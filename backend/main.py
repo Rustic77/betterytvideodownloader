@@ -93,6 +93,13 @@ async def root():
     return FileResponse(html_path)
 
 
+@app.get("/ads.txt")
+async def ads_txt():
+    """Serve ads.txt for Google AdSense verification."""
+    ads_path = os.path.join(static_path, "ads.txt")
+    return FileResponse(ads_path, media_type="text/plain")
+
+
 @app.post("/api/info", response_model=VideoInfoResponse)
 async def get_info(request: VideoInfoRequest):
     """
